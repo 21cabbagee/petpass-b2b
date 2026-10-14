@@ -17,9 +17,12 @@ import {
   Info,
   Calendar,
   Layers,
-  HeartHandshake
+  HeartHandshake,
+  TrendingUp
 } from 'lucide-react';
 import confetti from 'canvas-confetti';
+import ParticlesCanvas from './components/ParticlesCanvas';
+import OutcomeChart from './components/OutcomeChart';
 
 const COUNTRY_RULES = {
   GB: {
@@ -230,11 +233,14 @@ export default function App() {
         </div>
       </header>
 
-      {/* Hero Section */}
-      <section className="relative pt-12 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+      {/* Hero Section with Casberry-style Particles Canvas */}
+      <section className="relative pt-16 pb-20 px-4 sm:px-6 lg:px-8 overflow-hidden">
+        {/* Interactive WebGL / Casberry Canvas Simulation */}
+        <ParticlesCanvas color="245, 158, 11" particleCount={50} connectionDistance={120} />
+
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_30%_20%,rgba(245,158,11,0.08),transparent_50%)] pointer-events-none" />
-        <div className="max-w-5xl mx-auto text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-slate-900 border border-slate-700/80 text-xs text-amber-300">
+        <div className="relative z-10 max-w-5xl mx-auto text-center space-y-6">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-slate-900 border border-slate-700/80 text-xs text-amber-300 shadow-md">
             <ShieldCheck className="w-4 h-4 text-amber-400" />
             <span>USDA APHIS 7001 • EU 576/2013 • DEFRA • IATA LAR CR1 Certified</span>
           </div>
@@ -243,21 +249,27 @@ export default function App() {
             Cross-Border Pet Passport & Airline Regulatory Vault
           </h1>
 
-          <p className="text-lg sm:text-xl text-slate-400 max-w-3xl mx-auto font-normal leading-relaxed">
+          <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto font-normal leading-relaxed">
             The mission-critical regulatory compliance suite for pet relocation agencies, airline handlers, and international movers. Eliminate quarantine detentions and flight turnarounds with pre-validated veterinary dossiers.
           </p>
+
+          {/* Larry Ellison Playbook: Confuse the Tenses & Sell Harder Than You Build */}
+          <div className="inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-amber-950/40 border border-amber-500/30 text-xs text-amber-200">
+            <Sparkles className="w-4 h-4 text-amber-400 shrink-0" />
+            <span><strong className="text-white">Service-as-a-Software Relocation Vault:</strong> Zero manual agency paperwork. Dossiers auto-validate in seconds with guaranteed customs clearance.</span>
+          </div>
 
           <div className="flex flex-wrap items-center justify-center gap-4 pt-4">
             <a 
               href="#dossier-generator" 
-              className="px-6 py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-lg shadow-amber-500/25 flex items-center gap-2"
+              className="px-6 py-3.5 bg-amber-500 hover:bg-amber-400 text-slate-950 font-bold text-sm rounded-xl transition-all shadow-lg shadow-amber-500/25 flex items-center gap-2 cursor-pointer"
             >
               <span>Build Relocation Dossier</span>
               <ArrowRight className="w-4 h-4" />
             </a>
             <a 
               href="#iata-calc" 
-              className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-sm rounded-xl transition-all flex items-center gap-2"
+              className="px-6 py-3.5 bg-slate-900 hover:bg-slate-800 text-slate-200 border border-slate-700 font-semibold text-sm rounded-xl transition-all flex items-center gap-2 cursor-pointer"
             >
               <Plane className="w-4 h-4 text-amber-400" />
               <span>IATA Live Crate Calculator</span>
@@ -285,6 +297,9 @@ export default function App() {
           </div>
         </div>
       </section>
+
+      {/* Sequoia Framework Outcome Visualizer (Bklit UI + Julien Bek $1 vs $6 Ratio) */}
+      <OutcomeChart onCtaClick={() => setIsCabModalOpen(true)} />
 
       {/* Section 1: Country Regulatory Matrix */}
       <section id="matrix" className="py-16 px-4 sm:px-6 lg:px-8 border-t border-slate-900 bg-slate-950/40">
